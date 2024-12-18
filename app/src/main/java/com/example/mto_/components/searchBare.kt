@@ -54,7 +54,10 @@ fun searchBare(
 fun searchBarePreview(){
     val citySearch= remember { mutableStateOf("") }
 
-    searchBare(modifier= Modifier.fillMaxSize(), textFieldValue = citySearch,searchBarePlaceholder = "Faites une recherche de météo",description = "Recherche de météo", onButton = {
+    searchBare(modifier= Modifier.fillMaxSize(),
+        textFieldValue = citySearch,
+        searchBarePlaceholder = "Faites une recherche de météo",
+        description = "Recherche de météo", onButton = {
         Log.d("ex","Result written : ${citySearch.value}")
     },
         onValueChange = {
