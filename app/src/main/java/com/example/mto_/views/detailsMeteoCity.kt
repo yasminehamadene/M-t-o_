@@ -1,4 +1,4 @@
-package yahvya.meteo_app.views
+package com.example.meteo_app.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

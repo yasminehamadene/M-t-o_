@@ -70,7 +70,7 @@ fun Accueil() {
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
             textFieldValue = research,
-            searchBarePlaceholder = "Saisir le nom de la ville",
+            searchBarePlaceholder = "Veuillez saisir le nom de la ville",
             description = "Recherche météo",
             onButton = {},
             onValueChange = { newVal -> research.value = newVal }
