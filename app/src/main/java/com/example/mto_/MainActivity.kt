@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -12,11 +13,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.mto_.navigation.navigate
 import com.example.mto_.navigation.Routes
 import com.example.mto_.ui.theme.Météo_Theme
+import com.example.mto_.ui.theme.Purple // Importer la couleur Purple
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -34,6 +37,7 @@ class MainActivity : ComponentActivity() {
                 val currentRoute = navBackStackEntry?.destination?.route
 
                 Scaffold(
+                    containerColor = Purple, // Applique la couleur violette pour le fond global
                     bottomBar = {
                         NavigationBar {
                             // Accueil
@@ -82,7 +86,9 @@ class MainActivity : ComponentActivity() {
                 ) { paddingValues ->
                     navigate(
                         navController = navController,
-                        modifier = Modifier.padding(paddingValues)
+                        modifier = Modifier
+                            .padding(paddingValues)  // Ajoute la gestion des paddings
+                            .background(Purple)      // Applique le fond violet à toute la page
                     )
                 }
             }

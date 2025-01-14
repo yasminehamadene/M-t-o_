@@ -42,7 +42,7 @@ fun MeteoDetailsView(
     var defaultItemToShow:Hourly? = null
 
     // show the last hour
-    val greaterKey = optionsMap.keys.maxWithOrNull(compareBy{ LocalDateTime.parse(it)})
+    val greaterKey = optionsMap.keys.maxWithOrNull(compareBy{ LocalDateTime.parse(it) })
 
     if(greaterKey !== null)
         defaultItemToShow = optionsMap[greaterKey]
@@ -83,7 +83,7 @@ fun MeteoDetailsView(
             ClickableText(
                 text = AnnotatedString("Choisir l'heure"),
                 onClick = { expanded.value = !expanded.value },
-                style = TextStyle(fontSize = 20.sp, fontStyle = FontStyle.Italic, color = Color(0xFF00796B))
+                style = TextStyle(fontSize = 20.sp, fontStyle = FontStyle.Italic, color = Color(0xFF000000))
             )
             DropdownMenu(
                 expanded = expanded.value,
@@ -107,15 +107,74 @@ fun MeteoDetailsView(
         hourlyNow.value?.let {
             Spacer(modifier = Modifier.height(16.dp))
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth().background(Color(0xFFE0F7FA)).padding(16.dp)
             ) {
-                Text("Température: ${it.temperature} ${weatherDto.temperatureUnit}", fontSize = 22.sp)
-                Text("Température Max: ${it.temperatureMax} ${weatherDto.temperatureUnit}", fontSize = 20.sp)
-                Text("Température Min: ${it.temperatureMin} ${weatherDto.temperatureUnit}", fontSize = 20.sp)
-                Text("Pluie: ${it.rainMeasure} ${weatherDto.rainMeasureUnit}", fontSize = 20.sp)
-                Text("Nuage: ${it.cloudHighMeasure} ${weatherDto.cloudMeasureUnit}", fontSize = 20.sp)
-                Text("Nuage bas: ${it.cloudLowMeasure} ${weatherDto.cloudMeasureUnit}", fontSize = 20.sp)
+                // Température
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Température:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("${it.temperature} ${weatherDto.temperatureUnit}", fontSize = 22.sp)
+                }
+                Spacer(modifier = Modifier.height(8.dp))
 
+                // Température Max et Min
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Température Max:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("${it.temperatureMax} ${weatherDto.temperatureUnit}", fontSize = 22.sp)
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Température Min:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("${it.temperatureMin} ${weatherDto.temperatureUnit}", fontSize = 22.sp)
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Pluie
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Pluie:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("${it.rainMeasure} ${weatherDto.rainMeasureUnit}", fontSize = 22.sp)
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Nuage
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Nuage:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("${it.cloudHighMeasure} ${weatherDto.cloudMeasureUnit}", fontSize = 22.sp)
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Nuage bas
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Nuage bas:", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text("${it.cloudLowMeasure} ${weatherDto.cloudMeasureUnit}", fontSize = 22.sp)
+                }
             }
         }
     }
