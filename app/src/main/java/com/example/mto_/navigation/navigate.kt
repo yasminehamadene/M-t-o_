@@ -15,6 +15,7 @@ data object Routes {
     const val HOME_PAGE = "home"
     const val FAVORITES = "favoritView"  // Vérifier que ce nom correspond bien partout
     const val METEO_DETAILS = "details"
+
 }
 
 @Composable

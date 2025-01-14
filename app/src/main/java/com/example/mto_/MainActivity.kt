@@ -20,6 +20,8 @@ import com.example.mto_.ui.theme.Météo_Theme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info // Icône Info
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     bottomBar = {
                         NavigationBar {
+                            // Accueil
                             NavigationBarItem(
                                 selected = currentRoute == Routes.HOME_PAGE,
                                 onClick = {
@@ -47,10 +50,11 @@ class MainActivity : ComponentActivity() {
                                 label = { Text("Accueil") }
                             )
 
+                            // Favoris
                             NavigationBarItem(
-                                selected = currentRoute == Routes.FAVORITES,  // Utilisation de Routes.FAVORITES
+                                selected = currentRoute == Routes.FAVORITES,
                                 onClick = {
-                                    navController.navigate(Routes.FAVORITES) {  // Utilisation de Routes.FAVORITES
+                                    navController.navigate(Routes.FAVORITES) {
                                         popUpTo(Routes.FAVORITES) { inclusive = true }
                                     }
                                 },
@@ -58,6 +62,20 @@ class MainActivity : ComponentActivity() {
                                     Icon(Icons.Filled.Favorite, contentDescription = "Favoris")
                                 },
                                 label = { Text("Favoris") }
+                            )
+
+                            // Détails Météo
+                            NavigationBarItem(
+                                selected = currentRoute == Routes.METEO_DETAILS,
+                                onClick = {
+                                    navController.navigate(Routes.METEO_DETAILS) {
+                                        popUpTo(Routes.METEO_DETAILS) { inclusive = true }
+                                    }
+                                },
+                                icon = {
+                                    Icon(Icons.Filled.Info, contentDescription = "Détails Météo")
+                                },
+                                label = { Text("Détails Meteo") }
                             )
                         }
                     }
