@@ -58,6 +58,11 @@ fun Accueil() {
         )
     )
 
+    // Fonction pour retirer un favori
+    val removeFromFavorites: (MeteoDto) -> Unit = { city ->
+        favorites.remove(city) // Retirer la ville des favoris
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -78,15 +83,15 @@ fun Accueil() {
         locationUser(
             modifier = Modifier,
             context = LocalContext.current,
-            onLocationGet = {location ->
-                if(location != null){
-                    Log.d("info","Longitude : ${location.longitude} - Latitude : ${location.latitude}")
+            onLocationGet = { location ->
+                if (location != null) {
+                    Log.d("info", "Longitude : ${location.longitude} - Latitude : ${location.latitude}")
                 }
             },
-            onDeny = { Log.d("info","Permission denied")
+            onDeny = {
+                Log.d("info", "Permission denied")
             }
         )
-
 
         // Résultats de recherche
         if (proposition.isNotEmpty()) {
@@ -141,7 +146,8 @@ fun Accueil() {
                             .fillMaxWidth()
                             .padding(vertical = 8.dp),
                         meteoDto = item,
-                        favoritBool = fav
+                        favoritBool = fav,
+                        onRemoveFromFavorites = { removeFromFavorites(item) } // Passer la fonction de suppression
                     )
                 }
             }
